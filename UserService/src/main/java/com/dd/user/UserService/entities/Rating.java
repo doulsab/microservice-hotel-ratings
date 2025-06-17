@@ -2,12 +2,14 @@ package com.dd.user.UserService.entities;
 
 import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Rating {
     private String ratingId;
     private String userId;

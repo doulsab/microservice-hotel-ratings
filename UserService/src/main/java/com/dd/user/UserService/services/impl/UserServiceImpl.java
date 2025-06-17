@@ -5,6 +5,7 @@ import com.dd.user.UserService.entities.Rating;
 import com.dd.user.UserService.entities.User;
 import com.dd.user.UserService.exceptions.ResourceNotFoundException;
 import com.dd.user.UserService.extranals.HotelService;
+import com.dd.user.UserService.extranals.RatingService;
 import com.dd.user.UserService.repositories.UserRepo;
 import com.dd.user.UserService.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,10 @@ public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
     private final RestTemplate restTemplate;
     private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+    // External Services
     private final HotelService hotelService;
+    private final RatingService ratingService;
+
 
     String RATING_SERVICE_URL = "http://RATING-SERVICE/ratings/users/";
     String HOTEL_SERVICE_URL = "http://HOTEL-SERVICE/hotels/";
@@ -42,7 +46,9 @@ public class UserServiceImpl implements UserService {
         // For each user, fetch ratings from external service (RATING-SERVICE) and update the user
         allUsers.forEach(user -> {
             // Get ratings by user ID
-            Rating[] ratings = getRatingsByUserId(user.getUserId());
+//            Rating[] ratings = getRatingsByUserId(user.getUserId());// Using RestTemplate
+            Rating[] ratings = ratingService.getRatingByUserId(user.getUserId()).getBody();// Using FeignClient
+
             List<Rating> listOfRatings = Arrays.asList(ratings);
 
             // Map each rating to include hotel details

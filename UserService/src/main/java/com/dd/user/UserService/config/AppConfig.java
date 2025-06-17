@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 public class AppConfig {
 
     @Bean
-    // This will manage the name of each services name which are registered in Eureka server to avoid the hostname and port(may get change)
+    // This will manage the name of each service name which are registered in Eureka server to avoid the hostname and port(may get change)
     @LoadBalanced
     RestTemplate restTemplate() {
         return new RestTemplate();

@@ -1,19 +1,24 @@
 server:
   port: 8083
+#  error:
+#    include-message: always  # This property ensures that the exception message is included in the response body in UI or Postman, even when the user doesn't use @RestControllerAdvice.
 spring:
+  application:
+    name: RATING-SERVICE
   data:
     mongodb:
-      uri: mongodb+srv://coder_doulsab:ZccOHuM9svyrIX4z@cluster-dd.eiaow.mongodb.net/?retryWrites=true&w=majority&appName=Cluster-dd
+      uri: mongodb+srv://doulsab0786:Daval111@cluster0.cacsbx1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
       database: micro-service
       port: 27017
-  application:
-    name: Rating-Service
+  config:
+    import: optional:configserver://localhost:8085
 #This is eureka client configurations
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+

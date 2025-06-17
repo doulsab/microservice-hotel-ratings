@@ -66,6 +66,13 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
+
+        <!--This is config client where we need to add this dependency -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+
     </dependencies>
     <!--        This is very important for client-->
     <dependencyManagement>

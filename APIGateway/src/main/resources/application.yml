@@ -1,0 +1,35 @@
+server:
+  port: 8084
+# Db configuration
+spring:
+  application:
+    name: API-GATEWAY
+  #This is for cloud route configuration parameters (-ID,uri(lb load balancing),predicates)
+  cloud:
+    gateway:
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
+
+        - id: HOTEL-SERVICE
+          uri: lb://HOTEL-SERVICE
+          predicates:
+            - Path=/hotels/**,/staffs/** #we can give separate with comma's more than one controller.
+
+        - id: RATING-SERVICE
+          uri: lb://RATING-SERVICE
+          predicates:
+            - Path=/ratings/**
+
+
+#This is eureka client configurations
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
